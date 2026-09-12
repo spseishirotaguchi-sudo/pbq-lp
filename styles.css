@@ -3,7 +3,7 @@
   --ink:#17191b;
   --muted:#555b60;
   --line:#d9dcdf;
-  --orange:#ba3b05;
+  --orange:#365c7a;
   --white:#fff;
   --dark:#17191b;
   --font:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif}
@@ -23,7 +23,7 @@ a {
   color:inherit;
   text-decoration:none}
 a:focus-visible,summary:focus-visible {
-  outline:3px solid #f76824;
+  outline:3px solid #507fa5;
   outline-offset:5px}
 img {
   display:block;
@@ -41,7 +41,7 @@ h2 {
 h3 {
   line-height:1.6}
 ::selection {
-  background:#ff6928;
+  background:#b7ccdf;
   color:#111}
 .wrap {
   width:min(1280px,90%);
@@ -61,7 +61,7 @@ h3 {
 .logo-dot {
   width:9px;
   height:9px;
-  background:#f15a22;
+  background:#dbe4ec;
   border-radius:50%;
   margin:13px 0 0 8px}
 .header-location {
@@ -112,7 +112,7 @@ h3 {
 .small-square {
   width:8px;
   height:8px;
-  background:#ff6b2b;
+  background:#9bbbd6;
   display:inline-block;
   flex-shrink:0}
 h1 {
@@ -122,7 +122,7 @@ h1 {
   font-weight:900;
   margin:25px 0}
 .outline-word {
-  color:#ff743a}
+  color:#b7ccdf}
 .hero-lead {
   font-size:16px;
   line-height:1.95;
@@ -136,7 +136,7 @@ h1 {
   display:inline-block;
   font-size:14px;
   margin-top:5px;
-  color:#ffad86}
+  color:#b7ccdf}
 .button {
   display:inline-flex;
   justify-content:space-between;
@@ -152,17 +152,17 @@ h1 {
   border-radius:4px;
   transition:background .2s,transform .2s}
 .button:hover {
-  background:#923006;
+  background:#29465e;
   transform:translateY(-2px)}
 .button span {
   font-size:27px;
   line-height:1}
 .hero .button {
-  background:#ff743a;
+  background:#b7ccdf;
   color:#17191b;
   min-width:345px}
 .hero .button:hover {
-  background:#ff925f}
+  background:#d8e5ef}
 .button-note {
   font-size:12px;
   line-height:1.8;
@@ -404,7 +404,7 @@ h1 {
 .join-section .section-kicker span:last-child {
   color:#bfc3c7}
 .join-section .section-kicker span:first-child:before {
-  background:#ff743a}
+  background:#b7ccdf}
 .join-heading {
   display:flex;
   align-items:center;
@@ -423,10 +423,10 @@ h1 {
 .steps li {
   padding:28px;
   background:#25282b;
-  border-top:3px solid #ff743a}
+  border-top:3px solid #b7ccdf}
 .step-number {
   font:800 42px/1 Arial,sans-serif;
-  color:#ff8e58;
+  color:#b7ccdf;
   letter-spacing:-.06em}
 .steps h3 {
   font-size:23px;
@@ -438,7 +438,7 @@ h1 {
 .join-action {
   text-align:center}
 .join-action .button {
-  background:#ff743a;
+  background:#b7ccdf;
   color:#17191b;
   min-width:340px}
 .join-action .button-note {
@@ -481,7 +481,7 @@ details>p {
 .final-section {
   display:grid;
   grid-template-columns:1fr 1fr;
-  background:#f15a22;
+  background:#dbe4ec;
   color:#17191b}
 .final-photo img {
   width:100%;
@@ -778,7 +778,7 @@ h2 {
   gap:10px 15px;
   padding:20px;
   border-top:0;
-  border-left:3px solid #ff743a}
+  border-left:3px solid #b7ccdf}
 .step-number {
   font-size:29px;
   padding-top:3px}
@@ -949,11 +949,11 @@ a,summary {
   display:none!important}
 
 .button:not(.button-light),.mobile-cta a {
-  background:#ff743a;
+  background:#b7ccdf;
   color:#17191b}
 
 .button:not(.button-light):hover,.mobile-cta a:hover {
-  background:#ff925f}
+  background:#d8e5ef}
 
 
 /* One gallery for the original photo collection. */
@@ -970,9 +970,9 @@ a,summary {
 .gallery-count{font:700 14px Arial,sans-serif;letter-spacing:.06em}
 .gallery-controls>div{display:flex;gap:10px}
 .gallery-controls button{width:52px;height:48px;border:1px solid #17191b;background:#fff;color:#17191b;font-size:25px;cursor:pointer;border-radius:4px}
-.gallery-controls button:hover:not(:disabled){background:#ff743a}
+.gallery-controls button:hover:not(:disabled){background:#b7ccdf}
 .gallery-controls button:disabled{opacity:.3;cursor:default}
-.gallery-controls button:focus-visible,.gallery-track:focus-visible{outline:3px solid #ba3b05;outline-offset:4px}
+.gallery-controls button:focus-visible,.gallery-track:focus-visible{outline:3px solid #365c7a;outline-offset:4px}
 @media(max-width:700px){.gallery-heading{display:block}.gallery-heading h3{font-size:25px}.gallery-hint{display:block;margin-top:10px;font-size:11px}.gallery-slide img{height:360px;height:clamp(280px,90vw,420px)}.gallery-slide figcaption{font-size:12px}.gallery-controls button{width:52px;height:48px}}
 
 @font-face{font-family:"PBQ Courgette";src:url("assets/fonts/Courgette-Regular.ttf") format("truetype");font-style:normal;font-weight:400;font-display:swap}
@@ -980,3 +980,17 @@ a,summary {
 .logo-dot{margin-top:18px;width:7px;height:7px}
 .site-footer .wordmark{font-size:44px}
 @media(max-width:700px){.wordmark{font-size:39px}.site-footer .wordmark{font-size:40px}.logo-dot{margin-top:14px;width:6px;height:6px}}
+
+/* A white gallery with natural image proportions and captions below. */
+.gallery-track{background:#fff;align-items:flex-start;scrollbar-color:#a8b0b8 #fff}
+.gallery-slide{display:flex;flex-direction:column;align-items:center;background:#fff}
+.gallery-slide img{width:auto;height:auto;max-width:100%;max-height:560px;object-fit:contain;background:transparent}
+.gallery-slide figcaption{background:#fff;color:#17191b;padding:16px 0 8px;min-height:0;font-size:14px}
+.hero-photo{object-position:50% 57%}
+.logo-dot{background:#507fa5}
+.instagram-link{display:inline-flex;align-items:center;gap:10px}
+.instagram-icon{width:22px;height:22px;flex-shrink:0}
+.instagram-link .instagram-text{margin-left:0}
+.instagram-link>span[aria-hidden]{margin-left:3px}
+@media(max-width:700px){.gallery-slide img{height:auto;max-height:480px;max-height:min(65svh,480px)}.gallery-slide figcaption{font-size:13px}.hero-photo{object-position:50% 55%}.instagram-link{font-size:11px;gap:8px}}
+.gallery-track{overflow-y:hidden}

@@ -13,6 +13,7 @@
     prev.disabled = index === 0;
     next.disabled = index === slides.length - 1;
     count.textContent = `${index + 1} / ${slides.length}`;
+    track.style.height = `${Math.ceil(slides[index].getBoundingClientRect().height) + (track.offsetHeight - track.clientHeight)}px`;
   };
   const move = (step) => {
     const target = Math.max(0, Math.min(slides.length - 1, index + step));
@@ -21,7 +22,10 @@
   prev.addEventListener('click', () => move(-1));
   next.addEventListener('click', () => move(1));
   track.addEventListener('keydown', (event) => {
-    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+    if (event.key === 'Home' || event.key === 'End') {
+      event.preventDefault();
+      move(event.key === 'Home' ? -slides.length : slides.length);
+    } else if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       event.preventDefault();
       move(event.key === 'ArrowLeft' ? -1 : 1);
     }
@@ -38,5 +42,8 @@
       update();
     }
   }).observe(track);
+  slides.forEach(slide => {
+    new ResizeObserver(update).observe(slide);
+  });
   update();
 })();
