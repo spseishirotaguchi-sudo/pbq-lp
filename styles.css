@@ -955,3 +955,28 @@ a,summary {
 .button:not(.button-light):hover,.mobile-cta a:hover {
   background:#ff925f}
 
+
+/* One gallery for the original photo collection. */
+.photo-gallery{min-width:0}
+.gallery-heading{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:20px}
+.gallery-heading .eyebrow{font-size:11px;color:var(--orange)}
+.gallery-heading h3{font-size:28px;letter-spacing:-.04em;margin-top:8px}
+.gallery-hint{font-size:12px;color:var(--muted)}
+.gallery-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;background:#17191b;scrollbar-width:thin;scrollbar-color:#73777b #17191b}
+.gallery-slide{flex:0 0 100%;min-width:0;scroll-snap-align:start;scroll-snap-stop:always}
+.gallery-slide img{width:100%;height:480px;object-fit:contain;background:#17191b}
+.gallery-slide figcaption{color:#fff;padding:14px 20px;font-size:13px;text-align:center;min-height:48px;line-height:1.6}
+.gallery-controls{display:flex;justify-content:space-between;align-items:center;margin-top:16px}
+.gallery-count{font:700 14px Arial,sans-serif;letter-spacing:.06em}
+.gallery-controls>div{display:flex;gap:10px}
+.gallery-controls button{width:52px;height:48px;border:1px solid #17191b;background:#fff;color:#17191b;font-size:25px;cursor:pointer;border-radius:4px}
+.gallery-controls button:hover:not(:disabled){background:#ff743a}
+.gallery-controls button:disabled{opacity:.3;cursor:default}
+.gallery-controls button:focus-visible,.gallery-track:focus-visible{outline:3px solid #ba3b05;outline-offset:4px}
+@media(max-width:700px){.gallery-heading{display:block}.gallery-heading h3{font-size:25px}.gallery-hint{display:block;margin-top:10px;font-size:11px}.gallery-slide img{height:360px;height:clamp(280px,90vw,420px)}.gallery-slide figcaption{font-size:12px}.gallery-controls button{width:52px;height:48px}}
+
+@font-face{font-family:"PBQ Courgette";src:url("assets/fonts/Courgette-Regular.ttf") format("truetype");font-style:normal;font-weight:400;font-display:swap}
+.wordmark,.site-footer .wordmark{font-family:"PBQ Courgette",cursive;font-weight:400;font-size:49px;letter-spacing:-2px;line-height:1.25}
+.logo-dot{margin-top:18px;width:7px;height:7px}
+.site-footer .wordmark{font-size:44px}
+@media(max-width:700px){.wordmark{font-size:39px}.site-footer .wordmark{font-size:40px}.logo-dot{margin-top:14px;width:6px;height:6px}}
