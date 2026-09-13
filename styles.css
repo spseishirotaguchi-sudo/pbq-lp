@@ -1008,6 +1008,6 @@ a,summary {
 /* ===== スクロールに合わせて順番に表示する ===== */
 @media (prefers-reduced-motion: no-preference){
   .js-rv [data-rv]{opacity:0;transform:translateY(40px);
-    transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+    transition:opacity 1.5s cubic-bezier(.2,.7,.2,1),transform 1.5s cubic-bezier(.2,.7,.2,1)}
   .js-rv [data-rv].rv-in{opacity:1;transform:none}
 }
