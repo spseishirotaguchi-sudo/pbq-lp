@@ -15,7 +15,8 @@
   <meta property="og:image" content="https://spseishirotaguchi-sudo.github.io/pbq-lp/img/teamphoto.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="assets/fonts/Courgette-Regular.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=42e7a08734cd">
+  <link rel="stylesheet" href="styles.css?v=9c31af57e204">
+  <script>document.documentElement.className += ' js-rv';</script>
 </head>
 <body>
 <a class="skip-link" href="#main">本文へ移動</a>
@@ -130,6 +131,57 @@ if ('IntersectionObserver' in window) {
     shortcut.hidden = entry.isIntersecting || entry.boundingClientRect.top > 0;
   }).observe(document.querySelector('.hero-stage'));
 }
+</script>
+<script>
+// Reveal blocks as they enter the viewport, staggered within each group.
+// Everything stays visible without JS, and motion is skipped when the visitor
+// asks for reduced motion.
+(function () {
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.remove('js-rv');
+    return;
+  }
+  const STEP = 100;   // ms between items in a group
+  const MAX = 6;      // cap so long lists never stall
+  const items = [];
+
+  function group(root, selector) {
+    if (!root) return;
+    root.querySelectorAll(selector).forEach((el, i) => {
+      el.setAttribute('data-rv', '');
+      el.style.transitionDelay = Math.min(i, MAX) * STEP + 'ms';
+      items.push(el);
+    });
+  }
+
+  group(document.querySelector('.hero-copy'),
+        '.eyebrow, #hero-title > span, .hero-lead, .hero-qualification, .button, .button-note');
+  group(document.querySelector('.facts'), ':scope > div');
+  group(document.querySelector('.intro'), '.section-kicker, #about-title, .intro-copy p');
+  group(document.querySelector('.gallery-heading'), ':scope > div, .gallery-hint');
+  group(document.querySelector('.experience'),
+        '.section-kicker, .experience-photo, #experience-title, .reason');
+  group(document.querySelector('.details-section'),
+        '.section-kicker, #details-title, .section-intro, .price, .info-list > div');
+  group(document.querySelector('.join-section'),
+        '.section-kicker, .join-heading, .steps li, .join-action');
+  group(document.querySelector('.faq'), '.faq-heading, .faq-list details');
+  group(document.querySelector('.final-section'), '.final-photo, .final-copy > *');
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('rv-in');
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+  items.forEach((el) => io.observe(el));
+
+  // Safety net: a flick scroll or anchor jump can carry an element past the
+  // viewport between callbacks. Never leave content stuck at opacity 0.
+  setTimeout(() => items.forEach((el) => el.classList.add('rv-in')), 2600);
+})();
 </script>
 <script src="gallery.js?v=0e367ca9d9dc"></script>
 </body>

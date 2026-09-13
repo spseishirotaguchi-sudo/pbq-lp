@@ -1004,3 +1004,10 @@ a,summary {
 .button-light:hover{background:#95182d}
 .gallery-controls button:hover:not(:disabled){background:#b51f37;color:#fff}
 ::selection{background:#b51f37;color:#fff}
+
+/* ===== スクロールに合わせて順番に表示する ===== */
+@media (prefers-reduced-motion: no-preference){
+  .js-rv [data-rv]{opacity:0;transform:translateY(18px);
+    transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .js-rv [data-rv].rv-in{opacity:1;transform:none}
+}
