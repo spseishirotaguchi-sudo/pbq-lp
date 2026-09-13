@@ -142,17 +142,28 @@ if ('IntersectionObserver' in window) {
     document.documentElement.classList.remove('js-rv');
     return;
   }
-  const STEP = 100;   // ms between items in a group
+  const STEP = 90;    // ms between items revealed together
   const MAX = 6;      // cap so long lists never stall
   const items = [];
 
   function group(root, selector) {
     if (!root) return;
-    root.querySelectorAll(selector).forEach((el, i) => {
+    root.querySelectorAll(selector).forEach((el) => {
       el.setAttribute('data-rv', '');
-      el.style.transitionDelay = Math.min(i, MAX) * STEP + 'ms';
       items.push(el);
     });
+  }
+
+  // Stagger by vertical position, not DOM order, so a batch always reads
+  // top to bottom even after the layout reflows to one column on phones.
+  function show(batch) {
+    batch
+      .map((el) => ({ el, top: el.getBoundingClientRect().top }))
+      .sort((a, b) => a.top - b.top)
+      .forEach((entry, i) => {
+        entry.el.style.transitionDelay = Math.min(i, MAX) * STEP + 'ms';
+        entry.el.classList.add('rv-in');
+      });
   }
 
   group(document.querySelector('.hero-copy'),
@@ -170,17 +181,30 @@ if ('IntersectionObserver' in window) {
   group(document.querySelector('.final-section'), '.final-photo, .final-copy > *');
 
   const io = new IntersectionObserver((entries) => {
+    const batch = [];
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
-      entry.target.classList.add('rv-in');
       io.unobserve(entry.target);
+      batch.push(entry.target);
     });
+    if (batch.length) show(batch);
   }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
   items.forEach((el) => io.observe(el));
 
   // Safety net: a flick scroll or anchor jump can carry an element past the
-  // viewport between callbacks. Never leave content stuck at opacity 0.
-  setTimeout(() => items.forEach((el) => el.classList.add('rv-in')), 2600);
+  // viewport between callbacks. Reveal only what is already on or above the
+  // screen, so content further down still animates when the visitor gets there.
+  function sweep() {
+    const bottom = window.innerHeight;
+    const missed = items.filter((el) =>
+      !el.classList.contains('rv-in') && el.getBoundingClientRect().top < bottom);
+    if (!missed.length) return;
+    missed.forEach((el) => io.unobserve(el));
+    show(missed);
+  }
+  addEventListener('scroll', sweep, { passive: true });
+  addEventListener('resize', sweep);
+  setTimeout(sweep, 1500);
 })();
 </script>
 <script src="gallery.js?v=0e367ca9d9dc"></script>
