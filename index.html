@@ -15,7 +15,7 @@
   <meta property="og:image" content="https://spseishirotaguchi-sudo.github.io/pbq-lp/img/teamphoto.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="assets/fonts/Courgette-Regular.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=9c31af57e204">
+  <link rel="stylesheet" href="styles.css?v=5b7e20d913ac">
   <script>document.documentElement.className += ' js-rv';</script>
 </head>
 <body>
@@ -168,9 +168,10 @@ if ('IntersectionObserver' in window) {
 
   group(document.querySelector('.hero-copy'),
         '.eyebrow, #hero-title > span, .hero-lead, .hero-qualification, .button, .button-note');
+  group(document.querySelector('.hero-visual'), '.photo-index, .photo-tag');
   group(document.querySelector('.facts'), ':scope > div');
   group(document.querySelector('.intro'), '.section-kicker, #about-title, .intro-copy p');
-  group(document.querySelector('.gallery-heading'), ':scope > div, .gallery-hint');
+  group(document.querySelector('.photo-gallery'), '.gallery-heading > div, .gallery-hint, .gallery-track, .gallery-controls');
   group(document.querySelector('.experience'),
         '.section-kicker, .experience-photo, #experience-title, .reason');
   group(document.querySelector('.details-section'),
@@ -179,6 +180,7 @@ if ('IntersectionObserver' in window) {
         '.section-kicker, .join-heading, .steps li, .join-action');
   group(document.querySelector('.faq'), '.faq-heading, .faq-list details');
   group(document.querySelector('.final-section'), '.final-photo, .final-copy > *');
+  group(document.querySelector('.site-footer'), ':scope > *');
 
   const io = new IntersectionObserver((entries) => {
     const batch = [];
@@ -188,23 +190,23 @@ if ('IntersectionObserver' in window) {
       batch.push(entry.target);
     });
     if (batch.length) show(batch);
-  }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+  }, { threshold: 0, rootMargin: '0px 0px -20% 0px' });  // fire once it is 20% up the screen
   items.forEach((el) => io.observe(el));
 
-  // Safety net: a flick scroll or anchor jump can carry an element past the
-  // viewport between callbacks. Reveal only what is already on or above the
-  // screen, so content further down still animates when the visitor gets there.
+  // Safety net for anchor jumps / flick scrolls: reveal only elements that
+  // have already scrolled completely past the top, never ones still below.
+  let ticking = false;
   function sweep() {
-    const bottom = window.innerHeight;
+    ticking = false;
     const missed = items.filter((el) =>
-      !el.classList.contains('rv-in') && el.getBoundingClientRect().top < bottom);
+      !el.classList.contains('rv-in') && el.getBoundingClientRect().bottom < 0);
     if (!missed.length) return;
     missed.forEach((el) => io.unobserve(el));
     show(missed);
   }
-  addEventListener('scroll', sweep, { passive: true });
-  addEventListener('resize', sweep);
-  setTimeout(sweep, 1500);
+  addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(sweep); }
+  }, { passive: true });
 })();
 </script>
 <script src="gallery.js?v=0e367ca9d9dc"></script>
