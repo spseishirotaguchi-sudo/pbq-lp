@@ -190,7 +190,7 @@ if ('IntersectionObserver' in window) {
       batch.push(entry.target);
     });
     if (batch.length) show(batch);
-  }, { threshold: 0, rootMargin: '0px 0px -20% 0px' });  // fire once it is 20% up the screen
+  }, { threshold: 0, rootMargin: '0px 0px -40% 0px' });  // fire once it is 40% up the screen
   items.forEach((el) => io.observe(el));
 
   // Safety net for anchor jumps / flick scrolls: reveal only elements that
